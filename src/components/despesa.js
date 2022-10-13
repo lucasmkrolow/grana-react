@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "./useFetch";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
+import ButtonAppBar from "./appBar";
 
 export default function Despesa() {
   const iurlParams = useParams();
@@ -34,31 +35,28 @@ export default function Despesa() {
       /*const origemTitle = await despesa.*/
       setValorPrevisto(despesa.valor_previsto);
       setValorExecutado(despesa.valor_executado);
-
-      console.log(despesa);
       setLoading(false);
     };
 
     fetchData();
-  }, [isLoading]);
+  }, [despesa]);
   if (isLoading) {
     return <div> Loading ... </div>;
   }
   return (
-    <div>
-      {" "}
+    <div
+      style={{
+        top: "0",
+        bottom: "0",
+        left: "0",
+        right: "0",
+        width: "100%",
+        position: "absolute",
+      }}
+    >
+      <ButtonAppBar nome={"Despesa " + id} />{" "}
       {
         <div>
-          <TextField
-            disabled
-            required
-            fullWidth
-            id="filled-basic"
-            label="ID"
-            variant="filled"
-            value={id}
-            type="number"
-          />
           <TextField
             disabled
             required
